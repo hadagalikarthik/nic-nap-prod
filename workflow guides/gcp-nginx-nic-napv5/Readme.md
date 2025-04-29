@@ -14,7 +14,7 @@ Deploy NGINX Ingress Controller with App ProtectV5 in GCP Cloud
   - [Workflow Runs](#workflow-runs)
     - [STEP 1: Workflow Branches](#step-1-workflow-branches)
     - [STEP 2: Policy ](#step-2-Policy)
-    - [STEP 3: Commit and Push Changes](#step-3-commit-and-push-changes)
+    - [STEP 3: Deploy Workflow](#step-3-deploy-workflow)
     - [STEP 4: Monitor the Workflow](#step-4-Monitor-the-workflow)
     - [STEP 5: Validation](#step-5-validation)
     - [STEP 6: Destroy Workflow](#step-6-Destroy-workflow)
@@ -131,9 +131,9 @@ Users have the option to utilize the existing policy or, if preferred, create a 
    ![policy](assets/policy.png)
 
 
-### STEP 3: Commit and Push changes
+### STEP 3: Deploy Workflow
  
-Commit the changes and push your deploy branch to the forked repo
+Commit the changes, checkout a branch with name **`gcp-deploy-nic-napv5`** and push your deploy branch to the forked repo
 ```sh
 git commit -a -m "GCP Deploy"
 git checkout -b gcp-apply-nic-napv5
