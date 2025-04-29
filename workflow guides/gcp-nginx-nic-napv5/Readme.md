@@ -134,6 +134,11 @@ Users have the option to utilize the existing policy or, if preferred, create a 
 ### STEP 3: Commit and Push changes
  
 Commit the changes and push your deploy branch to the forked repo
+```sh
+git commit -a -m "GCP Deploy"
+git checkout -b gcp-apply-nic-napv5
+git push origin gcp-apply-nic-napv5
+```
 
 ### STEP 4: Monitor the workflow
 
@@ -159,7 +164,12 @@ Users can now access the application through the NGINX Ingress Controller Load B
 
 ### STEP 6: Destroy Workflow  
 
-If you want to destroy the entire setup, checkout a branch with name **`gcp-destroy-nic-napv5`** and push your destroy branch to the forked repo. 
+If you want to destroy the entire setup, checkout a branch with name **`gcp-destroy-nic-napv5`** and push your destroy branch to the forked repo.
+```sh
+git commit -a -m "GCP Destroy"
+git checkout -b gcp-destroy-nic-napv5
+git push origin gcp-destroy-nic-napv5
+```
 
 Back in GitHub, navigate to the Actions tab of your forked repo and monitor your workflow
   
