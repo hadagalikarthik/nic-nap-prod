@@ -77,7 +77,7 @@ This workflow requires the following secrets and variable to be configured in yo
 
 | Secret Name                 | Type     | Description                                                                                             |
 |-----------------------------|----------|---------------------------------------------------------------------------------------------------------|
-| `TF_VAR_GOOGLE_CREDENTIALS` | Secret   | GCP Service Account Credentials in JSON format (in a single line)                                       |      
+| `TF_VAR_GOOGLE_CREDENTIALS` | Secret   | GCP Service Account Credentials in JSON format                                                          |      
 | `TF_VAR_GCP_PROJECT_ID`     | Secret   | GCP Project ID available in GCP landing page                                                            | 
 | `NGINX_JWT`                 | Secret   | JSON Web Token for NGINX license authentication                                                         |    
 | `NGINX_REPO_CRT`            | Secret   | NGINX Certificate                                                                                       | 
