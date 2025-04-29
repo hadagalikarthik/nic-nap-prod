@@ -117,7 +117,7 @@ The repository includes a default policy file named `policy.json`, which can be 
 }
 ```
  
-Users have the option to utilize the existing policy or, if preferred, create a custom policy. To do this, place the custom policy in the designated policy folder and name it `policy.json` or any name you choose. If you decide to use a different name, update the corresponding name in the [`az-apply-nic-napv5.yaml`](https://github.com/f5devcentral/nginx_automation_examples/blob/main/.github/workflows/az-apply-nic-napv5.yml) and  [`az-destroy-nic-napv5.yaml`](https://github.com/f5devcentral/nginx_automation_examples/blob/main/.github/workflows/az-destroy-nic-napv5.yml) workflow files accordingly.
+Users have the option to utilize the existing policy or, if preferred, create a custom policy. To do this, place the custom policy in the designated policy folder and name it `policy.json` or any name you choose. If you decide to use a different name, update the corresponding name in the [`az-apply-nic-napv5.yaml`](https://github.com/f5devcentral/nginx_automation_examples/blob/main/.github/workflows/az-apply-nic-napv5.yaml) and  [`az-destroy-nic-napv5.yaml`](https://github.com/f5devcentral/nginx_automation_examples/blob/main/.github/workflows/az-destroy-nic-napv5.yaml) workflow files accordingly.
 
   In the workflow files, locate the terraform_policy job and rename `policy.json` to your preferred name if you've decided to change it.
   
