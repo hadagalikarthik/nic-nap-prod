@@ -91,6 +91,9 @@ This workflow requires the following secrets and variable to be configured in yo
 Check out a branch with the branch name as suggested below for the workflow you wish to run using the following naming convention.
 
 **DEPLOY**
+```sh
+git checkout -b az-apply-nic-napv5
+```
 
   | Workflow           | Branch Name        |
   |--------------------|--------------------|
@@ -128,7 +131,6 @@ Users have the option to utilize the existing policy or, if preferred, create a 
  
 Commit the changes, checkout a branch with name **`az-apply-nic-napv5`** and push your deploy branch to the forked repo
 ```sh
-git checkout -b az-apply-nic-napv5
 git commit --allow-empty -m "Azure Deploy"
 git push origin az-apply-nic-napv5
 ```
