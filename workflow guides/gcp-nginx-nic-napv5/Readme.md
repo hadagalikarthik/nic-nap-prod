@@ -99,7 +99,9 @@ This workflow requires the following secrets and variable to be configured in yo
 Check out a branch with the branch name as suggested below for the workflow you wish to run using the following naming convention.
 
 **DEPLOY**
-
+```sh
+git checkout -b gcp-apply-nic-napv5
+```
   | Workflow            | Branch Name         |
   |---------------------|---------------------|
   | gcp-apply-nic-napv5 | gcp-apply-nic-napv5 |
@@ -135,7 +137,6 @@ Users have the option to utilize the existing policy or, if preferred, create a 
  
 Commit the changes, checkout a branch with name **`gcp-deploy-nic-napv5`** and push your deploy branch to the forked repo
 ```sh
-git checkout -b gcp-apply-nic-napv5
 git commit --allow-empty -m "GCP Deploy"
 git push origin gcp-apply-nic-napv5
 ```
