@@ -3,8 +3,8 @@ on:
   push:
     branches: destroy-nic-napv5
 env:
-  TF_VAR_AWS_S3_BUCKET_NAME: ${{ secrets.TF_VAR_AWS_S3_BUCKET_NAME }}
-  TF_VAR_AWS_REGION: ${{ secrets.TF_VAR_AWS_REGION }}
+  TF_VAR_AWS_S3_BUCKET_NAME: ${{ vars.TF_VAR_AWS_S3_BUCKET_NAME }}
+  TF_VAR_AWS_REGION: ${{ vars.TF_VAR_AWS_REGION }}
 jobs:
   terraform_arcadia:
     name: "Destroy Arcadia WebApp"
@@ -23,7 +23,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-          aws-region: ${{ secrets.TF_VAR_AWS_REGION }}
+          aws-region: $TF_VAR_AWS_REGION
       
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -31,8 +31,8 @@ jobs:
       - name: Terraform Init
         run: |
           terraform init \
-            -backend-config="bucket=${{ secrets.TF_VAR_AWS_S3_BUCKET_NAME }}" \
-            -backend-config="region=${{ secrets.TF_VAR_AWS_REGION }}"
+            -backend-config="bucket=$TF_VAR_AWS_S3_BUCKET_NAME" \
+            -backend-config="region=$TF_VAR_AWS_REGION"
 
       - name: Terraform Validate
         run: terraform validate -no-color
@@ -73,7 +73,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-          aws-region: ${{ secrets.TF_VAR_AWS_REGION }}
+          aws-region: $TF_VAR_AWS_REGION
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -81,8 +81,8 @@ jobs:
       - name: Terraform Init
         run: |
           terraform init \
-            -backend-config="bucket=${{ secrets.TF_VAR_AWS_S3_BUCKET_NAME }}" \
-            -backend-config="region=${{ secrets.TF_VAR_AWS_REGION }}"
+            -backend-config="bucket=$TF_VAR_AWS_S3_BUCKET_NAME" \
+            -backend-config="region=$TF_VAR_AWS_REGION"
 
       - name: Terraform Destroy
         run: terraform destroy -auto-approve -lock=false
@@ -104,7 +104,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-          aws-region: ${{ secrets.TF_VAR_AWS_REGION }}
+          aws-region: $TF_VAR_AWS_REGION
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -112,8 +112,8 @@ jobs:
       - name: Terraform Init
         run: |
           terraform init \
-            -backend-config="bucket=${{ secrets.TF_VAR_AWS_S3_BUCKET_NAME }}" \
-            -backend-config="region=${{ secrets.TF_VAR_AWS_REGION }}"
+            -backend-config="bucket=$TF_VAR_AWS_S3_BUCKET_NAME" \
+            -backend-config="region=$TF_VAR_AWS_REGION"
 
       - name: Terraform Plan (Destroy)
         run: |
@@ -160,7 +160,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-          aws-region: ${{ secrets.TF_VAR_AWS_REGION }}
+          aws-region: $TF_VAR_AWS_REGION
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -168,8 +168,8 @@ jobs:
       - name: Terraform Init
         run: |
           terraform init \
-            -backend-config="bucket=${{ secrets.TF_VAR_AWS_S3_BUCKET_NAME }}" \
-            -backend-config="region=${{ secrets.TF_VAR_AWS_REGION }}"
+            -backend-config="bucket=$TF_VAR_AWS_S3_BUCKET_NAME" \
+            -backend-config="region=$TF_VAR_AWS_REGION"
 
       - name: Terraform Plan (Destroy)
         if: github.event_name == 'pull_request' || github.event_name == 'push'
@@ -207,7 +207,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-          aws-region: ${{ secrets.TF_VAR_AWS_REGION }}
+          aws-region: $TF_VAR_AWS_REGION
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -215,8 +215,8 @@ jobs:
       - name: Terraform Init
         run: |
           terraform init \
-            -backend-config="bucket=${{ secrets.TF_VAR_AWS_S3_BUCKET_NAME }}" \
-            -backend-config="region=${{ secrets.TF_VAR_AWS_REGION }}"
+            -backend-config="bucket=$TF_VAR_AWS_S3_BUCKET_NAME" \
+            -backend-config="region=$TF_VAR_AWS_REGION"
 
       - name: Terraform Plan (Destroy)
         if: github.event_name == 'pull_request' || github.event_name == 'push'
@@ -258,7 +258,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-          aws-region: ${{ secrets.TF_VAR_AWS_REGION }}
+          aws-region: $TF_VAR_AWS_REGION
 
       - name: Set Bucket Name
         id: set_bucket
