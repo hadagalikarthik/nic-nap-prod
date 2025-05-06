@@ -263,7 +263,7 @@ jobs:
       - name: Set Bucket Name
         id: set_bucket
         run: |
-          echo "bucket_name= ${{ secrets.TF_VAR_AWS_S3_BUCKET_NAME }}" >> $GITHUB_OUTPUT
+          echo "bucket_name= $TF_VAR_AWS_S3_BUCKET_NAME" >> $GITHUB_OUTPUT
 
       - name: Nuclear S3 Bucket Deletion
         run: |
