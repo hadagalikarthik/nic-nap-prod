@@ -7,28 +7,24 @@
   - [Prerequisites](#prerequisites)
   - [Assets](#assets)
   - [Tools](#tools)
-  - [GitHub Secrets Configuration](#github-secrets-configuration)
-    - [Required Secrets](#required-secrets)
+  - [GitHub Configurations](#github-configurations)
     - [How to Add Secrets](#how-to-add-secrets)
+    - [How to Add Variables](#how-to-add-variables)
+    - [Required Secrets and Variables](#required-secrets-and-variables)
   - [Workflow Runs](#workflow-runs)
     - [STEP 1: Workflow Branches](#step-1-workflow-branches)
-    - [STEP 2: Modify terraform.tfvars](#step-2-Modify-terraform-tfvars)
-    - [STEP 3: Policy ](#step-3-Policy)
-    - [STEP 4: Commit Changes](#step-4-Commit-Changes)
-    - [STEP 5: Deployment Workflow](#step-5-Deployment-workflow)
-    - [STEP 6: Validation](#step-6-validation)
-    - [STEP 7: Destroy Workflow](#step-7-Destroy-workflow)
+    - [STEP 2: Policy ](#step-2-Policy)
+    - [STEP 3: Deploy Workflow](#step-3-deploy-workflow)
+    - [STEP 4: Monitor the Workflow](#step-4-Monitor-the-workflow)
+    - [STEP 5: Validation](#step-5-validation)
+    - [STEP 6: Destroy Workflow](#step-6-Destroy-workflow)
   - [Conclusion](#conclusion)
   - [Support](#support)
   - [Copyright](#copyright)
     - [F5 Networks Contributor License Agreement](#f5-networks-contributor-license-agreement)
 
 ## Introduction
----------------
 This demo guide provides a comprehensive, step-by-step walkthrough for configuring the NGINX Ingress Controller alongside NGINX App Protect v5 on the AWS Cloud platform. It utilizes Terraform scripts to automate the deployment process, making it more efficient and streamlined. For further details, please consult the official [documentation](https://docs.nginx.com/nginx-ingress-controller/installation/integrations/). Also, you can find more insights in the DevCentral article [F5 NGINX Automation Examples [Part 1-Deploy F5 NGINX Ingress Controller with App ProtectV5]](https://community.f5.com/kb/technicalarticles/f5-nginx-automation-examples-part-1-deploy-f5-nginx-ingress-controller-with-app-/340500).
-
-
---------------
 
 ## Architecture Diagram
 ![System Architecture](assets/AWS.jpeg)
@@ -52,22 +48,10 @@ This demo guide provides a comprehensive, step-by-step walkthrough for configuri
 * **IAC State:** Amazon S3
 * **CI/CD:** GitHub Actions
 
-## GitHub Secrets Configuration
+## GitHub Configurations
 
-This workflow requires the following secrets to be configured in your GitHub repository:
+First of all, fork and clone the repo. Next, create the following GitHub Actions secrets and variable in your forked repo.
 
-### Required Secrets
-
-| Secret Name            | Type    | Description                                                              
-|------------------------|---------|----------------------------------------------------------------------|
-| `AWS_ACCESS_KEY_ID`     | Secret  | AWS IAM user access key ID with sufficient permissions              |      
-| `AWS_SECRET_ACCESS_KEY` | Secret  | Corresponding secret access key for the AWS IAM user                |  
-| `AWS_SESSION_TOKEN`     | Secret  | Session token for temporary AWS credentials (if using MFA)          |       
-| `NGINX_JWT`             | Secret  | JSON Web Token for NGINX license authentication                     |    
-| `NGINX_Repo_CRT`        | Secret  | NGINX Certificate                                                   | 
-| `NGINX_Repo_KEY`        | Secret  | Private key for securing HTTPS and verifying SSL/TLS certificates   |
-| `TF_VAR_AWS_S3_BUCKET_NAME`  | Secret  | Unique S3 bucket name                                            | 
-| `TF_VAR_AWS_REGION`        | Secret  | AWS region. Note: The region should support atleast two availability zones   |
 ### How to Add Secrets
 
 1. Navigate to your GitHub repository
@@ -77,18 +61,56 @@ This workflow requires the following secrets to be configured in your GitHub rep
 5. Paste the secret value
 6. Click **Add secret**
 
+### How to Add Variables
+
+1. Navigate to your GitHub repository
+2. Go to **Settings** → **Secrets and variables** → **Actions**
+3. Click **Variables** tab
+4. Click **New repository variable**
+5. Enter the variable name exactly as shown above
+6. Paste the variable value
+7. Click **Add variable**
+
+This workflow requires the following secrets and variable to be configured in your GitHub repository:
+
+### Required Secrets and Variables
+
+| Secret Name            | Type    | Description                                                              
+|------------------------|---------|----------------------------------------------------------------------|
+| `AWS_ACCESS_KEY_ID`     | Secret  | AWS IAM user access key ID with sufficient permissions              |      
+| `AWS_SECRET_ACCESS_KEY` | Secret  | Corresponding secret access key for the AWS IAM user                |  
+| `AWS_SESSION_TOKEN`     | Secret  | Session token for temporary AWS credentials (if using MFA)          |       
+| `NGINX_JWT`             | Secret  | JSON Web Token for NGINX license authentication                     |    
+| `NGINX_Repo_CRT`        | Secret  | NGINX Certificate                                                   | 
+| `NGINX_Repo_KEY`        | Secret  | Private key for securing HTTPS and verifying SSL/TLS certificates   |
+| `TF_VAR_AWS_S3_BUCKET_NAME`  | Variable  | Unique S3 bucket name                                            | 
+| `TF_VAR_AWS_REGION`        | Variable  | AWS region. Note: The region should support atleast two availability zones   |
+
+### Github Secrets
+ ![secrets](assets/secrets.png)
+
+### Github Variables
+![variables](assets/variables.png)
+
 ## Workflow Runs
 
 ### STEP 1: Workflow Branches
+
+Check out a branch with the branch name as suggested below for the workflow you wish to run using the following naming convention.
+
 **DEPLOY**
-  | Workflow     | Branch Name      |
-  | ------------ | ---------------- |
-  |Apply-nic-napv5| apply-nic-napv5   |
+```sh
+git checkout -b gcp-apply-nic-napv5
+```
+  | Workflow        | Branch Name     |
+  |-----------------|-----------------|
+  | apply-nic-napv5 | apply-nic-napv5 |
 
 **DESTROY**
-  | Workflow     | Branch Name       |
-  | ------------ | ----------------- |
-  | Destroy-nic-napv5| destroy-nic-napv5   |
+
+  | Workflow          | Branch Name       |
+  |-------------------|-------------------|
+  | destroy-nic-napv5 | destroy-nic-napv5 |
 
 ### STEP 2: Modify terraform. tfvars  
 Rename `infra/terraform.tfvars.examples` to `infra/terraform.tfvars` and add the following data:
