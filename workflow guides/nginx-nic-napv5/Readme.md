@@ -75,16 +75,18 @@ This workflow requires the following secrets and variable to be configured in yo
 
 ### Required Secrets and Variables
 
-| Secret Name            | Type    | Description                                                              
-|------------------------|---------|----------------------------------------------------------------------|
-| `AWS_ACCESS_KEY_ID`     | Secret  | AWS IAM user access key ID with sufficient permissions              |      
-| `AWS_SECRET_ACCESS_KEY` | Secret  | Corresponding secret access key for the AWS IAM user                |  
-| `AWS_SESSION_TOKEN`     | Secret  | Session token for temporary AWS credentials (if using MFA)          |       
-| `NGINX_JWT`             | Secret  | JSON Web Token for NGINX license authentication                     |    
-| `NGINX_Repo_CRT`        | Secret  | NGINX Certificate                                                   | 
-| `NGINX_Repo_KEY`        | Secret  | Private key for securing HTTPS and verifying SSL/TLS certificates   |
-| `TF_VAR_AWS_S3_BUCKET_NAME`  | Variable  | Unique S3 bucket name                                            | 
-| `TF_VAR_AWS_REGION`        | Variable  | AWS region. Note: The region should support atleast two availability zones   |
+| Secret Name            | Type    | Description                                                                                             
+|------------------------|---------|---------------------------------------------------------------------------------------------------------|
+| `AWS_ACCESS_KEY_ID`     | Secret  | AWS IAM user access key ID with sufficient permissions                                                  |      
+| `AWS_SECRET_ACCESS_KEY` | Secret  | Corresponding secret access key for the AWS IAM user                                                    |  
+| `AWS_SESSION_TOKEN`     | Secret  | Session token for temporary AWS credentials (if using MFA)                                              |       
+| `NGINX_JWT`             | Secret  | JSON Web Token for NGINX license authentication                                                         |    
+| `NGINX_Repo_CRT`        | Secret  | NGINX Certificate                                                                                       | 
+| `NGINX_Repo_KEY`        | Secret  | Private key for securing HTTPS and verifying SSL/TLS certificates                                       |
+| `TF_VAR_PROJECT_PREFIX`     | Variable | Your project identifier name in lowercase letters only - this will be applied as a prefix to all assets | 
+| `TF_VAR_AWS_S3_BUCKET_NAME`  | Variable  | Unique S3 bucket name                                                                                   | 
+| `TF_VAR_AWS_REGION`        | Variable  | AWS region. Note: The region should support atleast two availability zones                              |
+| `TF_VAR_RESOURCE_OWNER`     | Variable | Resource owner name                                                                                     | 
 
 ### Github Secrets
  ![secrets](assets/secrets.png)
