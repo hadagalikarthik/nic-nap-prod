@@ -111,13 +111,7 @@ git checkout -b gcp-apply-nic-napv5
   | Workflow          | Branch Name       |
   |-------------------|-------------------|
   | destroy-nic-napv5 | destroy-nic-napv5 |
-
-### STEP 2: Modify terraform. tfvars  
-Rename `infra/terraform.tfvars.examples` to `infra/terraform.tfvars` and add the following data:
-  * project_prefix  = "Your project identifier name in **lower case** letters only - this will be applied as a prefix to all assets"
-  * resource_owner = "Your-name"
-
-### STEP 3: Policy 
+### STEP 2: Policy 
 
 The repository includes a default policy file named `policy.json`, which can be found in the `AWS/policy` directory.
 
@@ -136,78 +130,59 @@ Users have the option to utilize the existing policy or, if preferred, create a 
 
   In the workflow files, locate the terraform_policy job and rename `policy.json` to your preferred name if you've decided to change it.
   
-   ![Push](assets/policy.png)
+   ![policy](assets/policy.png)
 
 
-### STEP 4: Commit changes
+### STEP 3: Deploy Workflow
+ 
+Commit the changes, checkout a branch with name **`deploy-nic-napv5`** and push your deploy branch to the forked repo
+```sh
+git commit --allow-empty -m "AWS Deploy"
+git push origin apply-nic-napv5
+```
+
+### STEP 4: Monitor the workflow
+
+Back in GitHub, navigate to the Actions tab of your forked repo and monitor your build. Once the pipeline completes, verify your assets were deployed in GCP
+
+  ![deploy](assets/deploy.png)
 
 
-   ![commit](assets/commit.png)
-   
-
-### STEP 5: Deployment Workflow  
-
-* **Step 1**: Check out a branch for the deploy workflow using the following naming convention  
-  * nic-napv5 deployment branch: apply-nic-napv5
-    
-   ![Branch](assets/branch.png)
-
-* **Step 2**: Push your deploy branch to the forked repo
-   
-   ![Push](assets/push.png)
-
-* **Step 3**: Back in GitHub, navigate to the Actions tab of your forked repo and monitor your build
-  
-   ![Actions](assets/actions.png)
-
-* **Step 4**: Once the pipeline completes, verify your assets were deployed to AWS  
-
-  ![Apply](assets/apply.png)
-
-
-### STEP 6: Validation  
+### STEP 5: Validation  
 
 Users can now access the application through the NGINX Ingress Controller Load Balancer, which enhances security for the backend application by implementing the configured Web Application Firewall (WAF) policies. This setup not only improves accessibility but also ensures that the application is protected from various web threats.
 
-  ![Arcadia](assets/arcardia.png)
+  ![IP](assets/ext_ip.png)
 
-* With malicious attacks:
+* Access the application:
 
-  ![Cross-site](assets/cross-site.png)
+  ![arcadia](assets/arcadia.png)
 
 * Verify that the cross-site scripting is detected and blocked by NGINX App Protect.  
 
-  ![Block](assets/block.png)
+  ![block](assets/mitigation.png)
   
 
-### STEP 7: Destroy Workflow  
+### STEP 6: Destroy Workflow  
 
-* **Step 1**: From your main branch, check out a new branch for the destroy workflow using the following naming convention  
-  * nic-napv5 destroy branch: destroy-nic-napv5  
+If you want to destroy the entire setup, checkout a branch with name **`destroy-nic-napv5`** and push your destroy branch to the forked repo.
+```sh
+git checkout -b destroy-nic-napv5
+git commit --allow-empty -m "AWS Destroy"
+git push origin destroy-nic-napv5
+```
+
+Back in GitHub, navigate to the Actions tab of your forked repo and monitor your workflow
   
-  ![Add destroy](assets/destroy_checkout.png)
+Once the pipeline is completed, verify that your assets were destroyed  
 
-* **Step 2**: Push your destroy branch to the forked repo  
-
-  ![Add LB](assets/destroy-push.png)
-
-* **Step 3**: Back in GitHub, navigate to the Actions tab of your forked repo and monitor your workflow
-  
-  ![Actions](assets/actions.png)
-
-* **Step 4**: Once the pipeline is completed, verify that your assets were destroyed  
-
-  ![Destroy](assets/destroy.png)
-
-
-
-
+  ![destroy](assets/destroy.png)
 
 ## Support
 For support, please open a GitHub issue. Note that the code in this repository is community-supported and is not supported by F5 Networks.
 
 ## Copyright
-Copyright 2014-2020 F5 Networks Inc.
+Copyright 2014-2025 F5 Networks Inc.
 
 ### F5 Networks Contributor License Agreement
 Before you start contributing to any project sponsored by F5 Networks, Inc. (F5) on GitHub, you will need to sign a Contributor License Agreement (CLA).

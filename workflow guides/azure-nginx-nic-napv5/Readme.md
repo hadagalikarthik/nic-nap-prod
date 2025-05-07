@@ -176,7 +176,7 @@ Once the pipeline is completed, verify that your assets were destroyed
 For support, please open a GitHub issue. Note that the code in this repository is community-supported and is not supported by F5 Networks.
 
 ## Copyright
-Copyright 2014-2020 F5 Networks Inc.
+Copyright 2014-2025 F5 Networks Inc.
 
 ### F5 Networks Contributor License Agreement
 Before you start contributing to any project sponsored by F5 Networks, Inc. (F5) on GitHub, you will need to sign a Contributor License Agreement (CLA).
